@@ -37,7 +37,7 @@ public class SpellValidator{
         if (noParts) return new ValidationResult(null, "");
 
         boolean validatedAny = false;
-        modiferValidator = new ModiferValidator();
+        modiferValidator = new ModiferValidator(); //Added in ArsMagica2-fixes
         for (int x = 0; x < shapeGroups.size(); ++x){
             if (shapeGroups.get(x).size() > 0){
                 if (segmented.size() == 0){
@@ -64,9 +64,11 @@ public class SpellValidator{
                 return result;
         }
 
+        //Added in ArsMagica2-fixes
         if(!modiferValidator.isValid()){
             return new ValidationResult(segmented.get(0).get(0), "To many modifiers.");
         }
+        //****************
 
         return new ValidationResult();
     }
@@ -106,9 +108,12 @@ public class SpellValidator{
                 one_component = true;
                 continue;
             }
+
+            //Added in ArsMagica2-fixes
             if(modiferValidator != null && part instanceof ISpellModifier){
                 modiferValidator.addModifier(part.getClass().getName());
             }
+            //****************
         }
 
         if (principum)
